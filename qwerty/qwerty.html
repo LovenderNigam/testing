@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8">
+    <title>Registration Form</title>
+  </head>
+  <style>
+    .container {
+  margin: 0 auto;
+  max-width: 600px;
+  padding: 20px;
+}
+
+h2 {
+  text-align: center;
+}
+
+.form-control {
+  margin-bottom: 10px;
+}
+
+label {
+  display: inline-block;
+  width: 150px;
+}
+
+input[type="text"],
+input[type="tel"],
+input[type="email"] {
+  width: 350px;
+  padding: 5px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+}
+
+button[type="submit"] {
+  display: block;
+  margin: 20px auto;
+  padding: 10px;
+  border: none;
+  border-radius: 5px;
+  background-color: #4CAF50;
+  color: white;
+  cursor: pointer;
+}
+
+.search {
+  margin: 20px 0;
+}
+
+#searchName {
+  width: 300px;
+  padding: 5px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+}
+
+#searchBtn {
+    color: white;
+  margin-left: 10px;
+  padding: 5px;
+  border-radius: 5px;
+  background-color: #4CAF50;
+  border: none
+   
+}
+
+  </style>
+  <body>
+    <div class="container">
+      <h2>Registration Form</h2>
+      <form id="myForm">
+        <div class="form-control">
+          <label for="name">Name:</label>
+          <input type="text" id="name" name="name" required>
+        </div>
+        <div class="form-control">
+          <label for="contact">Contact Number:</label>
+          <input type="tel" id="contact" name="contact" required>
+        </div>
+        <div class="form-control">
+          <label for="email">Email:</label>
+          <input type="email" id="email" name="email" required>
+        </div>
+        <button type="submit" id="submitBtn">Submit</button>
+      </form>
+      <div class="search">
+        <label for="searchName">Search by Name:</label>
+        <input type="text" id="searchName" name="searchName">
+        <button id="searchBtn">Search</button>
+      </div>
+      <table id="myTable">
+        <thead>
+          <tr>
+            <th>Name</th>
+            <th>Contact Number</th>
+            <th>Email</th>
+            <th>Action</th>
+          </tr>
+        </thead>
+        <tbody></tbody>
+      </table>
+    </div>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/react/17.0.2/umd/react.production.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/react-dom/17.0.2/umd/react-dom.production.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/babel-standalone/6.26.0/babel.min.js"></script>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="index.js" type="text/babel"></script>
+  </body>
+</html>

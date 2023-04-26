@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Registration form</title>
+     </head>
+  <style>
+    table {
+  border-collapse: collapse;
+  width: 100%;
+  margin-bottom: 1rem;
+}
+
+th,
+td {
+  text-align: left;
+  padding: 0.5rem;
+  border-bottom: 1px solid #dee2e6;
+}
+
+th {
+  background-color: #007bff;
+  color: white;
+  cursor: pointer;
+}
+
+th:hover {
+  background-color: #0069d9;
+}
+
+td:first-child {
+  font-weight: bold;
+}
+
+input {
+  margin-right: 1rem;
+}
+
+button {
+  margin-top: 1rem;
+}
+
+  </style>
+  <body>
+    <div id="app"></div>
+    <script src="https://unpkg.com/react@17.0.2/umd/react.development.js"></script>
+    <script src="https://unpkg.com/react-dom@17.0.2/umd/react-dom.development.js"></script>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script>
+    const App = () => {
+  const [name, setName] = React.useState("");
+  const [number, setNumber] = React.useState("");
+  const [data, setData] = React.useState([]);
+
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    const newData = { name, number };
+    if (!data.some((d) => d.name === name || d.number === number)) {
+      setData([...data, newData]);
+      setName("");
+      setNumber("");
+    } else {
+      alert("Person's name and contact number should be unique.");
+    }
+  };
+
+  const handleDelete = (name) => {
+    const newData = data.filter((d) => d.name !== name);
+    setData(newData);
+    alert(`${name} has been deleted.`);
+  };
+
+  const handleSort = (prop) => {
+    const newData = [...data];
+    newData.sort((a, b) => a[prop].localeCompare(b[prop]));
+    setData(newData);
+  };
+
+  const handleSearch = (e) => {
+    const newData = data.filter((d) =>
+      d.name.toLowerCase().includes(e.target.value.toLowerCase())
+    );
+    setData(newData);
+  };
+
+  return (
+    <>
+      <form onSubmit={handleSubmit}>
+        <label htmlFor="name">Name:</label>
+        <input
+          type="text"
+          id="name"
+          value={name}
+          onChange={(e) => setName(e.target.value)}
+          required
+        />
+        <label htmlFor="number">Contact Number:</label>
+        <input
+          type="text"
+          id="number"
+          value={number}
+          onChange={(e) => setNumber(e.target.value)}
+          required
+        />
+        <button type="submit">Submit</button>
+      </form>
+      <label htmlFor="search">Search by Name:</label>
+      <input type="text" id="search" onChange={handleSearch} />
+      <table>
+        <thead>
+          <tr>
+            <th onClick={() => handleSort("name")}>Name</th>
+            <th>Number</th>
+            <th>Delete</th>
+          </tr>
+        </thead>
+        <tbody>
+          {data.map((d) => (
+            <tr key={d.name}>
+              <td>{d.name}</td>
+              <td>{d.number}</td>
+              <td>
+                <button onClick={() => handleDelete(d.name)}>Delete</button>
+              </td>
+            </tr>
+          ))}
+        </tbody>
+      </table>
+    </>
+  );
+};
+
+ReactDOM.render(<App />, document.getElementById("app"));
+    </script>
+  </body>
+</html>
